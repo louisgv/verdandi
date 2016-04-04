@@ -1,6 +1,6 @@
 ---
 applications:
-- name: abelios
+- name: verdandi
   path: .
   command: node lab.js
   memory: 512M
@@ -9,4 +9,7 @@ applications:
     SECURE_EXPRESS: 1
   services:
     - Concept Insights-kt
-  host: abelios
+    - Natural Language Classifier-g1
+    - Document Conversion-ws
+    - Dialog-5q
+  host: verdandi

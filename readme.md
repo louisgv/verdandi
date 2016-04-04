@@ -1,6 +1,6 @@
 # Introduction
 
-A real time bot for your micro-farming need.
+Verdandi is the goddess of the present who measure your fate. She shall guide your startup toward growth and success.
 
 # Setup
 
