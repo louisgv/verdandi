@@ -1,25 +1,50 @@
 "use strict";
 
-exports.suggestion= function (solution) {
+let knp = [
+  "mVHFRNU3q_k",
+  "xn6roGifN_Y",
+  "st21dIMaGMs",
+  "kH6QJzmLYtw",
+  "VDEuS5wIk5Q",
+  "naleynXS7yo",
+  "UHyoDV1fsA4",
+  "dkHqPFbxmOU"
+]
+
+exports.randomKnP = function () {
+
+  let v = knp[Math.floor(Math.random() * knp.length)];
+
+  return {
+    'username': 'Verdandi',
+    'text': `In the meantime, you might enjoy this video :laughing:
+    https://www.youtube.com/watch?v=${v}`,
+    'icon_emoji': ':joy:',
+  }
+}
+
+exports.suggestion = function (solution) {
   // Awesome. Hint: You can say yes, I want blah ;)
 }
 
 exports.apologies = function (lv, convo, solution) {
 
-  switch (lv) {
-    case 9:
-      // I'm terribly sorry about my incompetent. Please try again in the form of ``
-      break;
-    default:
+  switch(lv) {
+  case 9:
+    // I'm terribly sorry about my incompetent. Please try again in the form of ``
+    break;
+  default:
 
   }
 }
 
 exports.infoResponse = function (label, text, link, imgSrc) {
+
   return {
-    'username':'Verdandi',
+    'username': 'Verdandi',
+    'text': 'I hope these are useful :blush:',
     'icon_emoji': ':nerd_face:',
-    attachments: [{
+    'attachments': [{
       "title": label,
       "fallback": text,
       "text": text,

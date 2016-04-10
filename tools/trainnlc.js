@@ -1,5 +1,7 @@
 "use strict";
 
+let className = 'help-knp-poster-seeker';
+
 let watson = require('watson-developer-cloud');
 
 let secret = require('../modules/credential')
@@ -20,7 +22,7 @@ let dataPath = path.join(__dirname, '../data', `role.csv`);
 
 let params = {
   language: 'en',
-  name: 'posterOseeker',
+  name: className,
   training_data: fs.createReadStream(dataPath)
 };
 

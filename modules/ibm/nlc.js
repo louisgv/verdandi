@@ -12,7 +12,7 @@ let natural_language_classifier = watson.natural_language_classifier({
   version: 'v1'
 });
 
-const nlcID = "f1704ex55-nlc-927";
+const nlcID = "f15e67x54-nlc-1132";
 
 exports.getList = function (callback) {
   natural_language_classifier.list({},

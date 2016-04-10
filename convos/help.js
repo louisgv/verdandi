@@ -32,7 +32,20 @@ let commandList = {
         "value": "Looking for a gig",
         "short": true
                 }]
-    }
+    },
+    {
+      'color': '#193bdc',
+      'title': 'I can also do the following:',
+      "fields": [{
+        "title": "Showing this help message",
+        "value": "What can you do?",
+        "short": true
+                }, {
+        "title": "post",
+        "value": "start a job posting",
+        "short": true
+                }]
+    },
   ]
 };
 
