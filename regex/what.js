@@ -28,7 +28,7 @@ module.exports = function (controller, mode) {
       // console.log(sr);
       let s = respond;
 
-      let r = utils.infoResponse(s.label, s.abstract,s.link, s.thumbnail);
+      let r = utils.infoResponse(s.label, s.abstract, s.link, s.thumbnail);
 
       bot.reply(message, r);
     })

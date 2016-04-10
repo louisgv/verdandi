@@ -3,7 +3,9 @@
 let HelpController = {};
 
 let commandList = {
-  'text': 'Here\'re examples of what I can help you with boss :smile:',
+  'username': 'Verdandi',
+  'icon_emoji': ':innocent:',
+  'text': 'Here\'re examples of what I could help you with :blush:',
   'attachments': [
     {
       'color': '#193bdc',

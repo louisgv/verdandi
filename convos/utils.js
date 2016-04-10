@@ -17,7 +17,7 @@ exports.apologies = function (lv, convo, solution) {
 
 exports.infoResponse = function (label, text, link, imgSrc) {
   return {
-    'username': 'InfoBot',
+    'username':'Verdandi',
     'icon_emoji': ':nerd_face:',
     attachments: [{
       "title": label,
