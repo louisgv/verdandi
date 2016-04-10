@@ -6,42 +6,52 @@ let FileEvent = {};
 
 module.exports = FileEvent;
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0)
+    .toUpperCase() + string.slice(1);
+}
+
 function constructProfile(data) {
 
-  let f = [
-    {
-      "title": "Summary",
-      "value": data.summary.join(', '),
-      "short": false
-    }, {
-      "title": "Skills - Syntax",
-      "value": data.skills.syntax.join(', '),
-      "short": true
-    }, {
-      "title": "Skills - Framework",
-      "value": data.skills.framework.join(', '),
-      "short": true
-    }, {
-      "title": "Skills - Domains",
-      "value": data.skills.domains.join(', '),
-      "short": true
-    }, {
-      "title": "Experiences",
-      "value": data.experiences.join(', '),
-      "short": false
-    }, {
-      "title": "Contact",
-      "value": JSON.stringify(data.contact),
-      "short": false
+  let skillString = ``;
+
+  for(let skill in data.skills) {
+    if(data.skills.hasOwnProperty(skill)) {
+      skillString += `. _${capitalizeFirstLetter(skill)}_ : \n\t \`${data.skills[skill].join('\` \`')}\`\n`
     }
-  ];
+  }
+
+  let f = [
+      {
+        "title": "Summary",
+        "value": ">>>" + capitalizeFirstLetter(data.summary.join(', ')),
+        "short": false
+    }, {
+        "title": "Skills",
+        "value": skillString,
+        "short": true
+    }, {
+        "title": "Experiences",
+        "value": "\`" + data.experiences.join('\`, \`')  + "\`",
+        "short": true
+      }
+  ]
 
   let a = [
     {
+      "fallback": "Here's what I found in your document",
       'color': '#193bdc',
-      'title': data.name,
-      'text': data.title,
-      "fields": f
+      "author_name": data.name,
+      'author_link': data.contact.website || null,
+      "title_link": data.contact.website || null,
+      'title': data.title,
+      "text": `<mailto:${data.contact.email}|${data.contact.email}>
+      ${data.location.city}, ${data.location.state}`,
+      "mrkdwn_in": ["text"]
+    }, {
+      'color': '#F12245',
+      "fields": f,
+      "mrkdwn_in": ["fields"]
     }
   ];
 
@@ -56,15 +66,7 @@ function constructProfile(data) {
 let dp = {
   "name": "Louis Vichy",
   "title": "Maze Walker",
-  "summary": [
-   "language independent programmer",
-   "problem solver",
-   "math head",
-   "forward thinking entrepreneur",
-   "aggressive learner",
-   "hands-on mentor",
-   "fda-approved dish washer"
- ],
+  "summary": "Language independent programmer, problem solver, math head, forward thinking entrepreneur, aggressive learner, hands-on mentor, FDA-approved dish washer",
   "skills": {
     "syntax": [
      "c",
@@ -118,8 +120,8 @@ let dp = {
     "website": "https://louisgv.github.io"
   },
   "location": {
-    "city": "",
-    "state": ""
+    "city": "Seattle",
+    "state": "WA"
   }
 };
 

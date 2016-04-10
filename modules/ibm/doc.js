@@ -34,7 +34,7 @@ function digestProfile(au) {
 
     switch(unit.title.toLowerCase()) {
     case 'summary':
-      seeker.summary = t.split(/\s*,\s*/);
+      seeker.summary = t;
       break;
     case 'skills':
       t.split(/\s*\.\s*/)
