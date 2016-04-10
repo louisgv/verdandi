@@ -14,9 +14,14 @@ module.exports = function (controller) {
   controller.on('rtm_close', function (bot) {
     console.log('** The RTM api just closed');
     // you may want to attempt to re-open
+
     bot.startRTM(function (err) {
+      if(err) {
+        console.log(err);
+      }
       console.log("Reconnected!");
     });
+
   });
 
 }

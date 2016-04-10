@@ -5,30 +5,34 @@ let fs = require('fs');
 let path = require('path');
 
 let jsonPath = '../db/nlc';
-
 let trainsetPath = '../data';
 
-let outputPath = path.join(__dirname, trainsetPath, 'role.csv');
+let inputFiles = fs.readdirSync(path.join(__dirname,jsonPath));
 
-let inputPath = path.join(__dirname, jsonPath, `role.json`);
+inputFiles.forEach((file) => {
 
-let buffer = fs.readFileSync(inputPath);
+  let inputPath = path.join(__dirname, jsonPath, file);
+  let outputPath = path.join(__dirname, trainsetPath, file.replace('.json','.csv'));
 
-let data = JSON.parse(buffer.toString());
+  let buffer = fs.readFileSync(inputPath);
 
-let outputCSV = "";
+  let data = JSON.parse(buffer.toString());
 
-for (let classifier in data) {
-  if (data.hasOwnProperty(classifier)) {
-    for (let i = 0; i < data[classifier].length; i++) {
-      outputCSV += `${data[classifier][i]},${classifier}\n`
+  let outputCSV = "";
+
+  for (let classifier in data) {
+    if (data.hasOwnProperty(classifier)) {
+      for (let i = 0; i < data[classifier].length; i++) {
+        outputCSV += `${data[classifier][i]},${classifier}\n`
+      }
     }
   }
-}
 
-fs.writeFile(outputPath, outputCSV, (err) => {
-  if(err) {
-    throw err;
-  }
-  console.log('It\'s saved!');
+  fs.writeFile(outputPath, outputCSV, (err) => {
+    if(err) {
+      throw err;
+    }
+    console.log('It\'s saved!');
+  });
+
 });
