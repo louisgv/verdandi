@@ -1,10 +1,10 @@
 "use strict";
 
-let utils = require('../convas/utils');
+let utils = require('../convos/utils');
 
-let nlc = require('../modulas/ibm/nlc');
+let nlc = require('../modules/ibm/nlc');
 
-let cc = require('../modulas/ibm/concept');
+let cc = require('../modules/ibm/concept');
 
 // let ccTest = require('../db/tmp/cc.json');
 

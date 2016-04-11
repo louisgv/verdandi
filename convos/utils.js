@@ -11,6 +11,12 @@ let knp = [
   "dkHqPFbxmOU"
 ]
 
+// bot.api.channels.list({}, (err, response) => {
+//   response.channels.filter((chan) => {return chan.is_member}).map((c) => {
+//     console.log(c);
+//   })
+// })
+
 exports.randomKnP = function () {
 
   let v = knp[Math.floor(Math.random() * knp.length)];

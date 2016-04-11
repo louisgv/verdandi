@@ -21,6 +21,7 @@ function digestProfile(au) {
     summary: [],
     skills: {},
     experiences: [],
+    education: [],
     contact: {},
     location: {
       city: "",
@@ -40,32 +41,51 @@ function digestProfile(au) {
       t.split(/\s*\.\s*/)
         .forEach((item) => {
           if(item) {
-            let sc = item.toLowerCase().split(/\s*\:\s*/);
+            let sc = item.toLowerCase()
+              .split(/\s*\:\s*/);
             seeker.skills[sc[0]] = sc[1].split(/\s*\,\s*/);
           }
         });
       break;
     case 'experiences':
-      t.split('---').forEach((e)=>{
-        let ed = e.split(/\s*\,\s*/);
-        let edg = ed[2].split(/\s*\-\s*/);
-        seeker.experiences.push({
-          role : ed[0],
-          time : ed[1],
-          company : edg[0],
-          location: edg[1],
-          summary: ed[3]
-        });
-      })
+      t.split('---')
+        .forEach((e) => {
+          let ed = e.split(/\s*\,\s*/);
+          let edg = ed[2].split(/\s*\-\s*/);
+          seeker.experiences.push({
+            role: ed[0],
+            time: ed[1],
+            company: edg[0],
+            location: edg[1],
+            summary: ed[3]
+          });
+        })
       break;
     case 'contact':
-      t.toLowerCase().split(/\s*\,\s*/)
+      t.toLowerCase()
+        .split(/\s*\,\s*/)
         .forEach((item) => {
           if(item) {
             let sc = item.split(" : ", 2);
             seeker.contact[sc[0]] = sc[1];
           }
         });
+      break;
+    case 'education':
+      t.split('---')
+        .forEach((e) => {
+          let ed = e.split(/\s*\,\s*/);
+          let edg = ed[2].split(/\s*\-\s*/);
+          let edgp = ed[3].split("GPA:");
+          seeker.education.push({
+            degree: ed[0],
+            time: ed[1],
+            school: edg[0],
+            location: edg[1],
+            summary: edgp[0],
+            gpa: parseFloat(edgp[1])
+          });
+        })
       break;
     default:
       if(unit.title.match(/^[a-zA-Z ]+$/)) {
@@ -114,7 +134,7 @@ exports.processCV = function (token, docURI, callback) {
         return callback(docData);
       }
       // callback(docData);
-      callback(digestProfile(docData.answer_units));
+      callback(digestProfile(docData.answer_units), docData);
     }
   });
 }

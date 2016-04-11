@@ -70,7 +70,7 @@ function setupWebserver(controller, port) {
   });
 }
 
-module.exports = function (port) {
+exports.start = function (port) {
 
   let controller = Botkit.slackbot({
       json_file_store: './db/bot/',

@@ -25,15 +25,14 @@ function constructProfile(data) {
 
   if (data.summary)
     f.push({
-      "title": "Summary",
-      "value":  "\t" + data.summary,
+      "value":  `*Summary*
+      ${data.summary}`,
       "short": true
     });
 
   if (skillString)
     f.push({
-      "title": "Skills",
-      "value": skillString,
+      "value": `*Skills*\n${skillString}`,
       "short": true
     });
 
@@ -47,6 +46,18 @@ function constructProfile(data) {
       "short": true
     })
   });
+
+  let ed = [];
+
+  data.education.forEach((e)=>{
+    ed.push({
+      "title": `${e.degree} - ${e.time}`,
+      "value": `_${e.school} - ${e.location}_
+      ${e.summary}
+      *GPA* : ${e.gpa}`,
+      "short": true
+    })
+  })
 
   let a = [
     {
@@ -63,13 +74,26 @@ function constructProfile(data) {
       'color': '#F12245',
       "fields": f,
       "mrkdwn_in": ["fields"]
-    }, {
+    }
+  ];
+
+  if (ef[0]) {
+    a.push({
       'title': "Experiences",
       'color': '#CCFC4B',
       "fields": ef,
       "mrkdwn_in": ["fields"]
-    }
-  ];
+    })
+  }
+
+  if (ed[0]){
+    a.push({
+      'title': "Education",
+      'color': '#0CFF51',
+      "fields": ed,
+      "mrkdwn_in": ["fields"]
+    })
+  }
 
   return {
     'username': 'Verdandi',
@@ -80,89 +104,29 @@ function constructProfile(data) {
 }
 
 let dp = {
- "name": "Louis Vichy",
-"title": "Maze Walker",
-"summary": "Language independent programmer, problem solver with 4 years of algorithm solving, 1 year of game developing, and 2 years of app bootstrapping. Math head, forward thinking entrepreneur with four failed startups. Aggressive learner, hands-on mentor, specialized in training junior developer to be independent developer. FDA-approved dish washer",
-"skills": {
-  "syntax": [
-     "c",
-     "c#",
-     "c++",
-     "css",
-     "ecma",
-     "html",
-     "java",
-     "python"
-   ],
-  "framework": [
-     "angular",
-     "babel",
-     "meteor",
-     "node",
-     "octave",
-     "unity",
-     "react",
-     "qt"
-   ],
-  "domains": [
-     "bot",
-     "data",
-     "game",
-     "productivity",
-     "real-time",
-     "visualization"
-   ]
-},
-"experiences": [
-  {
-    "role": "Tech Leader",
-    "time": "2015 to Current",
-    "company": "jabSquared",
-    "location": "Auburn WA",
-    "summary": "Consulting firm focused on creating customized mobile application for small businesses. Guided the tech team to release three mobile apps and three websites. Collaborated with the sale team to come up with business strategy. "
-   },
-  {
-    "role": " Lead Developer",
-    "time": "2013 to Current",
-    "company": "The L.A.B",
-    "location": "Auburn WA",
-    "summary": "A self-bootstrapped indie game studio. Released three casual games on GameJoit.com. Collaborated with over 40 other teams and studios during hackathons."
-   }
- ],
-"contact": {
-  "email": "louis@jabsquared.ninja",
-  "website": "https://louisgv.github.io"
-},
-"location": {
-  "city": "",
-  "state": ""
-}
+  "name": "",
+  "title": "",
+  "summary": "",
+  "skills": {},
+  "experiences": [],
+  "contact": {},
+  "location": {
+    "city": "",
+    "state": ""
+  }
 };
-
 
 FileEvent.show = function (bot, message) {
   bot.reply(message, constructProfile(dp));
 };
 
-
 FileEvent.onShared = function (bot, message) {
-
-  // bot.say({
-  //   text: JSON.stringify(message, null, 2),
-  //   channel: message.file.ims[0]
-  // });
-
-  // bot.api.channels.list({}, (err, response) => {
-  //   response.channels.filter((chan) => {return chan.is_member}).map((c) => {
-  //     console.log(c);
-  //   })
-  // })
 
   let file = message.file;
 
   if(file.filetype === "pdf" || file.filetype === "docx") {
 
-    Doc.processCV(bot.config.token, file.url_private, (docData) => {
+    Doc.processCV(bot.config.token, file.url_private, (docData, rawData) => {
       if(docData.warning) {
         bot.say({
           text: `There was some problem with the document, namely:
@@ -176,6 +140,11 @@ FileEvent.onShared = function (bot, message) {
       // XXX: Save docData
 
       // bot.say({
+      //   text: JSON.stringify(rawData, null, 2),
+      //   channel: file.ims[0]
+      // })
+
+      // bot.say({
       //   text: JSON.stringify(docData, null, 2),
       //   channel: file.ims[0]
       // })
@@ -185,7 +154,9 @@ FileEvent.onShared = function (bot, message) {
       bot.startPrivateConversation({
         user: file.user
       }, function(response, convo){
+
         convo.say(constructProfile(docData))
+
       })
 
     })
@@ -196,6 +167,12 @@ FileEvent.onShared = function (bot, message) {
       text: `Awesome, we can use that for the job listing :)`,
       channel: message.file.ims[0]
     })
+
+    // bot.api.channels.list({}, (err, response) => {
+    //   response.channels.filter((chan) => {return chan.is_member}).map((c) => {
+    //     console.log(c);
+    //   })
+    // })
 
   } else {
     bot.say({
