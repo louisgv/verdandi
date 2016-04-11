@@ -1,5 +1,7 @@
 "use strict";
 
+const Init = require('./init');
+
 module.exports = function (controller) {
 
   // Handle events related to the websocket connection to Slack
@@ -15,12 +17,7 @@ module.exports = function (controller) {
     console.log('** The RTM api just closed');
     // you may want to attempt to re-open
 
-    bot.startRTM(function (err) {
-      if(err) {
-        console.log(err);
-      }
-      console.log("Reconnected!");
-    });
+    Init.connectToAllTeams(controller);
 
   });
 

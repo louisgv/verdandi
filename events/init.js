@@ -19,7 +19,7 @@ function initDirectMessage(controller) {
     if(_bots[bot.config.token]) {
       // already online! do nothing.
     } else {
-      bot.startRTM(function (err) {
+      bot.startRTM((err) => {
         if(!err) {
           trackBot(bot);
         }
@@ -29,7 +29,6 @@ function initDirectMessage(controller) {
       });
     }
   });
-
 }
 
 function connectToAllTeams(controller) {
@@ -39,7 +38,7 @@ function connectToAllTeams(controller) {
     }
 
     // connect all teams with bots up to slack!
-    for(var t in teams) {
+    for(let t in teams) {
       if(teams[t].bot) {
         controller.spawn(teams[t])
           .startRTM(function (err, bot) {
@@ -53,6 +52,8 @@ function connectToAllTeams(controller) {
     }
   });
 }
+
+exports.connectToAllTeams = connectToAllTeams;
 
 function setupWebserver(controller, port) {
   controller.setupWebserver(port, function (err, webserver) {

@@ -1,6 +1,6 @@
 "use strict";
 
-let doc = require('../modules/ibm/doc');
+const Doc = require('../modules/ibm/doc');
 
 let FileEvent = {};
 
@@ -21,21 +21,32 @@ function constructProfile(data) {
     }
   }
 
-  let f = [
-      {
-        "title": "Summary",
-        "value": ">>>" + capitalizeFirstLetter(data.summary.join(', ')),
-        "short": false
-    }, {
-        "title": "Skills",
-        "value": skillString,
-        "short": true
-    }, {
-        "title": "Experiences",
-        "value": "\`" + data.experiences.join('\`, \`')  + "\`",
-        "short": true
-      }
-  ]
+  let f = [];
+
+  if (data.summary)
+    f.push({
+      "title": "Summary",
+      "value":  "\t" + data.summary,
+      "short": true
+    });
+
+  if (skillString)
+    f.push({
+      "title": "Skills",
+      "value": skillString,
+      "short": true
+    });
+
+  let ef = [];
+
+  data.experiences.forEach((e)=>{
+    ef.push({
+      "title": `${e.role} - ${e.time}`,
+      "value": `_${e.company} - ${e.location}_
+      ${e.summary}`,
+      "short": true
+    })
+  });
 
   let a = [
     {
@@ -45,12 +56,17 @@ function constructProfile(data) {
       'author_link': data.contact.website || null,
       "title_link": data.contact.website || null,
       'title': data.title,
-      "text": `<mailto:${data.contact.email}|${data.contact.email}>
-      ${data.location.city}, ${data.location.state}`,
+      "text": data.contact.email ? `<mailto:${data.contact.email}|${data.contact.email}>`:`` +
+        data.location.city?`\n${data.location.city}, ${data.location.state}`: ``,
       "mrkdwn_in": ["text"]
     }, {
       'color': '#F12245',
       "fields": f,
+      "mrkdwn_in": ["fields"]
+    }, {
+      'title': "Experiences",
+      'color': '#CCFC4B',
+      "fields": ef,
       "mrkdwn_in": ["fields"]
     }
   ];
@@ -58,17 +74,17 @@ function constructProfile(data) {
   return {
     'username': 'Verdandi',
     'icon_emoji': ':nerd_face:',
-    'text': 'Here\'s what I found in your document :blush:',
+    'text': f[0] ? 'Here\'s what I found in your document :blush:' : "There's nothing in your document... :persevere:",
     'attachments': a
   }
 }
 
 let dp = {
-  "name": "Louis Vichy",
-  "title": "Maze Walker",
-  "summary": "Language independent programmer, problem solver, math head, forward thinking entrepreneur, aggressive learner, hands-on mentor, FDA-approved dish washer",
-  "skills": {
-    "syntax": [
+ "name": "Louis Vichy",
+"title": "Maze Walker",
+"summary": "Language independent programmer, problem solver with 4 years of algorithm solving, 1 year of game developing, and 2 years of app bootstrapping. Math head, forward thinking entrepreneur with four failed startups. Aggressive learner, hands-on mentor, specialized in training junior developer to be independent developer. FDA-approved dish washer",
+"skills": {
+  "syntax": [
      "c",
      "c#",
      "c++",
@@ -78,7 +94,7 @@ let dp = {
      "java",
      "python"
    ],
-    "framework": [
+  "framework": [
      "angular",
      "babel",
      "meteor",
@@ -88,7 +104,7 @@ let dp = {
      "react",
      "qt"
    ],
-    "domains": [
+  "domains": [
      "bot",
      "data",
      "game",
@@ -96,33 +112,31 @@ let dp = {
      "real-time",
      "visualization"
    ]
-  },
-  "experiences": [
-   "1 shipped event engagement app",
-   "1 shipped real-time entertainment app",
-   "1 ar project",
-   "1 health care project",
-   "1 fin-tech project",
-   "1 ed-tech mvp",
-   "2 food projects",
-   "2 engineering associate degrees",
-   "2 schedule management apps",
-   "2 social engagement projects",
-   "2 chat bots",
-   "2 grid-based resource management game",
-   "3 webrtc mvps",
-   "3 shipped casual games",
-   "3 vr projects (dk1 dk2 vive)",
-   "4 ibm watson projects"
+},
+"experiences": [
+  {
+    "role": "Tech Leader",
+    "time": "2015 to Current",
+    "company": "jabSquared",
+    "location": "Auburn WA",
+    "summary": "Consulting firm focused on creating customized mobile application for small businesses. Guided the tech team to release three mobile apps and three websites. Collaborated with the sale team to come up with business strategy. "
+   },
+  {
+    "role": " Lead Developer",
+    "time": "2013 to Current",
+    "company": "The L.A.B",
+    "location": "Auburn WA",
+    "summary": "A self-bootstrapped indie game studio. Released three casual games on GameJoit.com. Collaborated with over 40 other teams and studios during hackathons."
+   }
  ],
-  "contact": {
-    "email": "louis@jabsquared.ninja",
-    "website": "https://louisgv.github.io"
-  },
-  "location": {
-    "city": "Seattle",
-    "state": "WA"
-  }
+"contact": {
+  "email": "louis@jabsquared.ninja",
+  "website": "https://louisgv.github.io"
+},
+"location": {
+  "city": "",
+  "state": ""
+}
 };
 
 
@@ -148,22 +162,30 @@ FileEvent.onShared = function (bot, message) {
 
   if(file.filetype === "pdf" || file.filetype === "docx") {
 
-    doc.processCV(bot.config.token, file.url_private, (docData) => {
+    Doc.processCV(bot.config.token, file.url_private, (docData) => {
       if(docData.warning) {
         bot.say({
           text: `There was some problem with the document, namely:
             > ${docData.warning}
             You might want to submit a PDF instead?`,
-          channel: message.file.ims[0]
+          channel: file.ims[0]
         })
         return;
       }
 
       // XXX: Save docData
 
-      bot.say({
-        text: constructProfile(docData),
-        channel: message.file.ims[0]
+      // bot.say({
+      //   text: JSON.stringify(docData, null, 2),
+      //   channel: file.ims[0]
+      // })
+
+      // console.log(constructProfile(docData));
+
+      bot.startPrivateConversation({
+        user: file.user
+      }, function(response, convo){
+        convo.say(constructProfile(docData))
       })
 
     })
