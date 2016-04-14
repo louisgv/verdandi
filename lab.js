@@ -17,7 +17,7 @@ controller.hears("^fun$", ["ambient", "direct_mention", "direct_message"],
     bot.reply(message, Utils.randomKnP());
   });
 
-const JobSeeker = require('./convos/jseeker');
+const JobSeeker = require('./convos/seeker');
 
 const JobPoster = require('./convos/jposter');
 
@@ -56,18 +56,20 @@ controller.on('file_shared', FileEvent.onShared);
 
 const NLC = require('./modules/ibm/nlc');
 
+const nlcID = "f15e67x54-nlc-4251";
+
 controller.on(["ambient", "mention", "direct_mention"],
   function (bot, message) {
     bot.api.reactions.add({
       timestamp: message.ts,
       channel: message.channel,
-      name: 'robot_face',
+      name: 'angel',
     }, function (err) {
       if(err) {
         console.log(err)
       }
 
-      NLC.getClasses(message.text, function (classData) {
+      NLC.getClasses(message.text, nlcID, function (classData) {
         bot.startPrivateConversation({
           user: message.user
         }, function (response, convo) {

@@ -13,7 +13,7 @@ let natural_language_classifier = watson.natural_language_classifier({
 });
 
 // f15e67x54-nlc-1132
-const nlcID = "f1704ex55-nlc-927";
+// const nlcID = "f1704ex55-nlc-927";
 
 exports.getList = function (callback) {
   natural_language_classifier.list({},
@@ -26,11 +26,11 @@ exports.getList = function (callback) {
   );
 }
 
-exports.getClasses = function (text, callback) {
+exports.getClasses = function (text, nlcid, callback) {
 
   natural_language_classifier.classify({
       text: text,
-      classifier_id: nlcID
+      classifier_id: nlcid
     },
     function (err, response) {
       if(err){

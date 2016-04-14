@@ -8,7 +8,7 @@ const DataStore = require('../modules/datastore');
 
 const FileConvos = require('../convos/file');
 
-const JobSeeker = require('../convos/jseeker');
+const JobSeeker = require('../convos/seeker');
 
 let FileEvent = {};
 
