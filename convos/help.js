@@ -2,6 +2,8 @@
 
 let HelpController = {};
 
+module.exports = HelpController;
+
 let commandList = {
   'username': 'Verdandi',
   'icon_emoji': ':innocent:',
@@ -59,6 +61,3 @@ HelpController.status = function (bot, message) {
   let out = "APP_ENV_FILE: " + process.env.APP_ENV_FILE;
   bot.reply(message, out);
 };
-
-
-module.exports = HelpController;

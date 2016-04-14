@@ -2,106 +2,17 @@
 
 const Doc = require('../modules/ibm/doc');
 
+const Utils = require('../convos/utils');
+
+const DataStore = require('../modules/datastore');
+
+const FileConvos = require('../convos/file');
+
+const JobSeeker = require('../convos/jseeker');
+
 let FileEvent = {};
 
 module.exports = FileEvent;
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0)
-    .toUpperCase() + string.slice(1);
-}
-
-function constructProfile(data) {
-
-  let skillString = ``;
-
-  for(let skill in data.skills) {
-    if(data.skills.hasOwnProperty(skill)) {
-      skillString += `. _${capitalizeFirstLetter(skill)}_ : \n\t \`${data.skills[skill].join('\` \`')}\`\n`
-    }
-  }
-
-  let f = [];
-
-  if (data.summary)
-    f.push({
-      "value":  `*Summary*
-      ${data.summary}`,
-      "short": true
-    });
-
-  if (skillString)
-    f.push({
-      "value": `*Skills*\n${skillString}`,
-      "short": true
-    });
-
-  let ef = [];
-
-  data.experiences.forEach((e)=>{
-    ef.push({
-      "title": `${e.role} - ${e.time}`,
-      "value": `_${e.company} - ${e.location}_
-      ${e.summary}`,
-      "short": true
-    })
-  });
-
-  let ed = [];
-
-  data.education.forEach((e)=>{
-    ed.push({
-      "title": `${e.degree} - ${e.time}`,
-      "value": `_${e.school} - ${e.location}_
-      ${e.summary}
-      *GPA* : ${e.gpa}`,
-      "short": true
-    })
-  })
-
-  let a = [
-    {
-      "fallback": "Here's what I found in your document",
-      'color': '#193bdc',
-      "author_name": data.name,
-      'author_link': data.contact.website || null,
-      "title_link": data.contact.website || null,
-      'title': data.title,
-      "text": data.contact.email ? `<mailto:${data.contact.email}|${data.contact.email}>`:`` +
-        data.location.city?`\n${data.location.city}, ${data.location.state}`: ``,
-      "mrkdwn_in": ["text"]
-    }, {
-      'color': '#F12245',
-      "fields": f,
-      "mrkdwn_in": ["fields"]
-    }
-  ];
-
-  if (ef[0]) {
-    a.push({
-      'title': "Experiences",
-      'color': '#CCFC4B',
-      "fields": ef,
-      "mrkdwn_in": ["fields"]
-    })
-  }
-
-  if (ed[0]){
-    a.push({
-      'title': "Education",
-      'color': '#0CFF51',
-      "fields": ed,
-      "mrkdwn_in": ["fields"]
-    })
-  }
-
-  return {
-    'username': 'Verdandi',
-    'icon_emoji': ':nerd_face:',
-    'text': f[0] ? 'Here\'s what I found in your document :blush:' : "There's nothing in your document... :persevere:",
-    'attachments': a
-  }
-}
 
 let dp = {
   "name": "",
@@ -153,14 +64,19 @@ FileEvent.onShared = function (bot, message) {
 
       bot.startPrivateConversation({
         user: file.user
-      }, function(response, convo){
+      }, function (response, convo) {
 
-        convo.say(constructProfile(docData))
+        FileConvos.constructProfile(docData, (profileResponse, missingFields) => {
+          convo.say(profileResponse);
 
+          if(Object.keys(missingFields)
+            .length > 0) {
+            console.log(missingFields);
+            JobSeeker.start(response, convo, missingFields, docData, bot);
+          }
+        })
       })
-
     })
-
   } else if(file.filetype === "png" || file.filetype === "jpg") {
 
     bot.say({

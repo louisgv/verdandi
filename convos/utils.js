@@ -44,6 +44,16 @@ exports.apologies = function (lv, convo, solution) {
   }
 }
 
+
+exports.response = function (text, nameAddOn) {
+  return {
+    'username': 'Verdandi ' + nameAddOn || '',
+    'text': text,
+    'icon_emoji': ':innocent:'
+  }
+}
+
+
 exports.infoResponse = function (label, text, link, imgSrc) {
 
   return {
