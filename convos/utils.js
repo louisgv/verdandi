@@ -29,65 +29,75 @@ let yoga = [
 
 exports.randomYoga = function () {
 
-  let v = yoga[Math.floor(Math.random() * yoga.length)];
+	let v = yoga[Math.floor(Math.random() * yoga.length)];
 
-  return {
-    'username': 'Verdandi - Yoga',
-    'text': `Let's do some yoga shall we? :peace_symbol:
+	return {
+		'username': 'Verdandi - Yoga',
+		'text': `Let's do some yoga shall we? :peace_symbol:
     https://www.youtube.com/watch?v=${v}`,
-    'icon_emoji': ':blush:',
-  }
+		'icon_emoji': ':blush:',
+	}
 }
 
 exports.randomKnP = function () {
 
-  let v = knp[Math.floor(Math.random() * knp.length)];
+	let v = knp[Math.floor(Math.random() * knp.length)];
 
-  return {
-    'username': 'Verdandi - Fun',
-    'text': `In the meantime, you might enjoy this video :laughing:
+	return {
+		'username': 'Verdandi - Fun',
+		'text': `In the meantime, you might enjoy this video :laughing:
     https://www.youtube.com/watch?v=${v}`,
-    'icon_emoji': ':joy:',
-  }
+		'icon_emoji': ':joy:',
+	}
 }
 
 exports.suggestion = function (solution) {
-  // Awesome. Hint: You can say yes, I want blah ;)
+	// Awesome. Hint: You can say yes, I want blah ;)
 }
 
 exports.apologies = function (lv, convo, solution) {
 
-  switch(lv) {
-  case 9:
-    // I'm terribly sorry about my incompetent. Please try again in the form of ``
-    break;
-  default:
+	switch(lv) {
+	case 9:
+		// I'm terribly sorry about my incompetent. Please try again in the form of ``
+		break;
+	default:
 
-  }
+	}
 }
 
 
 exports.response = function (text, nameAddOn) {
-  return {
-    'username': 'Verdandi ' + (nameAddOn || ''),
-    'text': text,
-    'icon_emoji': ':innocent:'
-  }
+	return {
+		'username': 'Verdandi ' + (nameAddOn || ''),
+		'text': text,
+		'icon_emoji': ':innocent:'
+	}
 }
 
 exports.infoResponse = function (label, text, link, imgSrc) {
 
-  return {
-    'username': 'Verdandi',
-    'text': 'I hope this comes in handy :blush:',
-    'icon_emoji': ':nerd_face:',
-    'attachments': [{
-      "title": label,
-      "fallback": text,
-      "text": text,
-      "color": "#36a64f",
-      "title_link": link,
-      "thumb_url": imgSrc
+	return {
+		'username': 'Verdandi',
+		'text': 'I hope this comes in handy :blush:',
+		'icon_emoji': ':nerd_face:',
+		'attachments': [{
+			"title": label,
+			"fallback": text,
+			"text": text,
+			"color": "#36a64f",
+			"title_link": link,
+			"thumb_url": imgSrc
     }]
-  }
+	}
+}
+
+exports.shuffleArray = function (array) {
+	for(let i = array.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		let temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	return array;
 }

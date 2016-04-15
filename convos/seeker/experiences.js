@@ -15,16 +15,6 @@ const SummaryMessage = [
   'What did you do before that? :smirk:'
 ]
 
-function shuffleArray(array) {
-	for(let i = array.length - 1; i > 0; i--) {
-		let j = Math.floor(Math.random() * (i + 1));
-		let temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-	return array;
-}
-
 let questionQueue = [];
 
 function askSummary(r, c, m, d, b) {
@@ -42,7 +32,7 @@ function askSummary(r, c, m, d, b) {
 
       questionQueue = [askLocation, askTime, askRole, askCompany];
 
-      shuffleArray(questionQueue);
+      Utils.shuffleArray(questionQueue);
 
       questionQueue.push(askRepeat);
 

@@ -14,7 +14,7 @@ module.exports = FileEvent;
 
 let dp = require('../data/fullCV.json');
 
-dp.experiences = [];
+dp.education = [];
 
 FileEvent.show = function (bot, message) {
 
