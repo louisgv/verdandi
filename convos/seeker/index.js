@@ -9,6 +9,8 @@ const Contact = require('./contact')
 
 const DataStore = require('../../modules/datastore');
 
+const FileConvos = require('../file');
+
 /**
   TODO:
     + Asking for missing time-line. Concatting timeline from each category
@@ -28,8 +30,6 @@ JobSeeker.start = function (r, c, m, d, b) {
 			// Post something funny
 			// console.log(c.source_message);
 
-
-
 			b.startPrivateConversation({
 				user: c.source_message.user
 			}, function (response, convo) {
@@ -37,9 +37,15 @@ JobSeeker.start = function (r, c, m, d, b) {
 
 				DataStore.storeProfile(d);
 
-				convo.say(Utils.response("Awesome! :laughing: I will be spreading the world about you :blush:"));
+				FileConvos.constructProfile(d, (pR, mF) => {
+					// convo.say(profileResponse);
 
-				convo.say(Utils.randomKnP());
+					convo.say(pR);
+
+					convo.say(Utils.response("I will be spreading the world about you :blush:"));
+
+					convo.say(Utils.randomKnP());
+				})
 			})
 
 		} else {

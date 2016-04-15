@@ -14,7 +14,7 @@ module.exports = FileEvent;
 
 let dp = require('../data/fullCV.json');
 
-dp.summary = "";
+dp.experiences = [];
 
 FileEvent.show = function (bot, message) {
 
@@ -75,7 +75,7 @@ FileEvent.onShared = function (bot, message) {
 			}, function (response, convo) {
 
 				FileConvos.constructProfile(docData, (profileResponse, missingFields) => {
-					convo.say(profileResponse);
+					// convo.say(profileResponse);
 
 					JobSeeker.start(response, convo, missingFields, docData, bot);
 				})

@@ -117,7 +117,7 @@ File.constructProfile = function (data, callback) {
   let profileResponse = {
     'username': 'Verdandi',
     'icon_emoji': ':nerd_face:',
-    'text': f[0] ? 'Here\'s what I found in your document :blush:' : "There's nothing in your document... :persevere:",
+    'text': f[0] ? 'Awesome! Here\'s your profile card :laughing:' : "There's nothing in your document... :persevere:",
     'attachments': a
   };
 

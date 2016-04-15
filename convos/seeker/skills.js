@@ -8,21 +8,33 @@ const Next = require('./experiences');
 
 const Utils = require('../utils');
 
+const Consent = require('../consent');
+
 function askSkillItem(r, c, m, d, b) {
-	c.ask(Utils.response('What\'re your skills?', 'skills'),
-		function (r, c) {
-			c.say(Utils.response('You said : ' + r.text));
+	for(let s in d.skills) {
+		if(d.skills.hasOwnProperty(s)) {
+			c.ask(Utils.response(`What do you know about ${s}?`, 'skills'),
+				function (r, c) {
 
-			Next.ask(r, c, m, d, b);
+					d.skills[s] = r.text.split(/\s*\,\s*/);
 
-			c.next();
-		});
+					c.next();
+				});
+		}
+	}
+	c.say(Utils.response('Very interesting :blush:!'), 'skills');
+	Next.ask(r, c, m, d, b);
+	c.next();
 }
 
 function askSkillCategory(r, c, m, d, b) {
-	c.ask(Utils.response('What\'re your skills?', 'skills'),
+	c.ask(Utils.response('How would you categorize your top 3 topics? (For example, `programming, chemistry, journalist`. Please separate them with comma :sweat_smile:)', 'skills'),
 		function (r, c) {
-			c.say(Utils.response('You said : ' + r.text));
+
+			r.text.split(/\s*\,\s*/)
+				.forEach((cat) => {
+					d.skills[cat] = [];
+				})
 
 			askSkillItem(r, c, m, d, b);
 
