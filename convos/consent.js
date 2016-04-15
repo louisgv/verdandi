@@ -15,7 +15,7 @@ Consent.ask = function (r, c, b, cb) {
 		{
 			pattern: b.utterances.no,
 			callback: (r, c) => {
-				c.say(Utils.response('I respect your decision :wink: Let\'s move on!'))
+				c.sayFirst(Utils.response('I respect your decision :wink: Let\'s move on!'))
 				cb(false);
 				c.next();
 			}
@@ -32,7 +32,7 @@ Consent.ask = function (r, c, b, cb) {
 				NLC.getClasses(r.text, nlcID, function (classData) {
 					switch(classData.top_class) {
 					case 'decline':
-						c.say(Utils.response('I respect your decision :wink: Let\'s move on!'))
+						c.sayFirst(Utils.response('I respect your decision :wink: Let\'s move on!'))
 						cb(false);
 						break;
 					case 'allow':

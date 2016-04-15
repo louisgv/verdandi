@@ -67,6 +67,8 @@ FileEvent.onShared = function (bot, message) {
       //   text: JSON.stringify(docData, null, 2),
       //   channel: file.ims[0]
       // })
+      //
+      // return;
 
       // console.log(constructProfile(docData));
 

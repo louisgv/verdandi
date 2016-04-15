@@ -21,11 +21,14 @@ JobSeeker.start = function (r, c, m, d, b) {
 	c.on('end', function (c) {
 		if(c.status == 'completed') {
 			// Post something funny
-			console.log(c.task.botkit.utterances);
+			// console.log(c.source_message);
 
-      c.say(Utils.randomKnP());
-      c.next();
-
+			b.startPrivateConversation({
+				user: c.source_message.user
+			}, function (response, convo) {
+				convo.say(Utils.response("I will be spreading the world about you :blush:"));
+				convo.say(Utils.randomKnP());
+			})
 
 		} else {
 			// something happened that caused the conversation to stop prematurely

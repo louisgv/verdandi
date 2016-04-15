@@ -13,14 +13,10 @@ Summary.ask = function (r, c, m, d, b) {
 		c.ask(Utils.response('How would you describe yourself?', 'summary'),
 			function (r, c) {
 
-				let sLength = r.text.trim()
-					.replace(/\s+/gi, ' ')
-					.split(' ')
-					.length;
-
-				if(sLength < 140) {
-					c.say(Utils.response('A great summary should be longer than a tweet :sweat_smile:, can you elaborate more?'), 'summary');
-					c.silentRepeat();
+				if(r.text.length < 140) {
+					c.say(Utils.response('A great summary should be longer than a tweet :sweat_smile: Can you elaborate more?'), 'summary');
+					c.repeat();
+					c.next();
 				} else {
 					m.summary = r.text;
 					c.say(Utils.response('Very interesting :blush:'), 'summary')
