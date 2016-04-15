@@ -53,12 +53,11 @@ exports.response = function (text, nameAddOn) {
   }
 }
 
-
 exports.infoResponse = function (label, text, link, imgSrc) {
 
   return {
     'username': 'Verdandi',
-    'text': 'I hope these are useful :blush:',
+    'text': 'I hope this comes in handy :blush:',
     'icon_emoji': ':nerd_face:',
     'attachments': [{
       "title": label,

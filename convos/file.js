@@ -1,15 +1,15 @@
 'use strict';
 
-let FileController = {};
+let File = {};
 
-module.exports = FileController;
+module.exports = File;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0)
     .toUpperCase() + string.slice(1);
 }
 
-FileController.constructProfile = function (data, callback) {
+File.constructProfile = function (data, callback) {
 
     let missingFields = {
       location: true

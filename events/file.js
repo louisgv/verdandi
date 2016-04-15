@@ -50,7 +50,7 @@ FileEvent.onShared = function (bot, message) {
         bot.say({
           text: `There was some problem with the document, namely:
             > ${docData.warning}
-            You might want to submit a PDF instead? Also I can only read CV of a certain format, like this one:  :sweat_smile:`,
+             I can only read CV of this format at the : https://github.com/louisgv/verdandi/raw/master/data/fullCV.docx :sweat_smile:`,
           channel: file.ims[0]
         })
         return;
