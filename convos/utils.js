@@ -11,18 +11,40 @@ let knp = [
   "dkHqPFbxmOU"
 ]
 
+let yoga = [
+  "khDyWeZGb4w",
+  "Sc7uRkH-Rzo",
+  "ASfEk8se90U",
+  "DRJi2g1iwRs",
+  "buFmbvg4zjQ",
+  "3q0altyqePM",
+  "Onr5x8hjVFE"
+]
+
 // bot.api.channels.list({}, (err, response) => {
 //   response.channels.filter((chan) => {return chan.is_member}).map((c) => {
 //     console.log(c);
 //   })
 // })
 
+exports.randomYoga = function () {
+
+  let v = yoga[Math.floor(Math.random() * yoga.length)];
+
+  return {
+    'username': 'Verdandi - Yoga',
+    'text': `Let's do some yoga shall we? :peace_symbol:
+    https://www.youtube.com/watch?v=${v}`,
+    'icon_emoji': ':blush:',
+  }
+}
+
 exports.randomKnP = function () {
 
   let v = knp[Math.floor(Math.random() * knp.length)];
 
   return {
-    'username': 'Verdandi',
+    'username': 'Verdandi - Fun',
     'text': `In the meantime, you might enjoy this video :laughing:
     https://www.youtube.com/watch?v=${v}`,
     'icon_emoji': ':joy:',

@@ -110,7 +110,7 @@ controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 
 						break;
 					case 'yogadoro':
-
+        		convo.say(Utils.randomYoga());
 						break;
 					case 'what':
 						What.answer(message.text, convo);

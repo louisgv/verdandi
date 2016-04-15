@@ -42,7 +42,7 @@ let commandList = {
 			'title': 'I can also do the following:',
       'mrkdwn_in': ["fields"],
 			"fields": [{
-				"title": ". Start a Pomodoro Session!",
+				"title": ". Start a Yogadoro Session!",
 				"value": "`I need to focus`, `Help me concentrate!`",
 				"short": true
       }, {
