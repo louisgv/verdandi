@@ -37,7 +37,7 @@ function askSchool(r, c, m, d, b) {
 
 function askSummary(r, c, m, d, b) {
 	let school = d.education[d.education.length - 1].school;
-	c.ask(Utils.response('How was it at ${school}? What did you do?', 'edu'),
+	c.ask(Utils.response(`How was it at ${school}? What did you do?`, 'edu'),
 		function (r, c) {
 
 			d.education[d.education.length - 1].summary = r.text;
@@ -50,7 +50,7 @@ function askSummary(r, c, m, d, b) {
 
 function askTime(r, c, m, d, b) {
 	let school = d.education[d.education.length - 1].school;
-	c.ask(Utils.response('When did you attend ${school}?', 'edu'),
+	c.ask(Utils.response(`When did you attend ${school}?`, 'edu'),
 		function (r, c) {
 
 			d.education[d.education.length - 1].time = r.text;
@@ -63,7 +63,7 @@ function askTime(r, c, m, d, b) {
 
 function askLocation(r, c, m, d, b) {
 	let school = d.education[d.education.length - 1].school;
-	c.ask(Utils.response('Where was ${school}?', 'edu'),
+	c.ask(Utils.response(`Where was ${school}?`, 'edu'),
 		function (r, c) {
 
 			d.education[d.education.length - 1].location = r.text;
@@ -76,7 +76,7 @@ function askLocation(r, c, m, d, b) {
 
 function askDegree(r, c, m, d, b) {
 	let school = d.education[d.education.length - 1].school;
-	c.ask(Utils.response('What degree did you earn at ${school}?', 'edu'),
+	c.ask(Utils.response(`What degree did you earn at ${school}?`, 'edu'),
 		function (r, c) {
 
 			d.education[d.education.length - 1].degree = r.text;
@@ -103,7 +103,7 @@ function askRepeat(r, c, m, d, b) {
 		{
 			pattern: b.utterances.no,
 			callback: (r, c) => {
-				Next.ask(r, c, m, d, b);
+
 				c.next();
 			}
   	}, {
@@ -133,7 +133,6 @@ Education.ask = function (r, c, m, d, b) {
 				askSchool(r, c, m, d, b);
 
 			} else {
-				Next.ask(r, c, m, d, b);
 
 				c.next();
 			}

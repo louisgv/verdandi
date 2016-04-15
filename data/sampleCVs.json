@@ -1,0 +1,136 @@
+[{
+    "name": "Louis Vichy",
+    "title": "Maze Walker",
+    "summary": "Language independent programmer, problem solver with 4 years of algorithm solving, 1 year of game developing, and 2 years of app bootstrapping.",
+    "skills": {
+        "syntax": [
+            "c",
+            "c#",
+            "c++"
+        ],
+        "framework": [
+            "node",
+            "octave",
+            "unity",
+            "react",
+            "qt"
+        ],
+        "domains": [
+            "bot",
+            "data"
+        ]
+    },
+    "experiences": [{
+        "role": "Tech Leader",
+        "time": "2015 to Current",
+        "company": "jabSquared",
+        "location": "Auburn WA",
+        "summary": "Consulting firm focused on creating customized mobile application for small businesses. Guided the tech team to release three mobile apps and three websites. Collaborated with the sale team to come up with business strategy. "
+    }, {
+        "role": " Lead Developer",
+        "time": "2013 to Current",
+        "company": "The L.A.B",
+        "location": "Auburn WA",
+        "summary": "A self-bootstrapped indie game studio. Released three casual games on GameJoit.com. Collaborated with over 40 other teams and studios during hackathons."
+    }],
+    "education": [{
+        "degree": "Associate of Computer Science",
+        "time": "2013 to 2015",
+        "school": "Green River College",
+        "location": "Auburn WA",
+        "summary": "International study. Mostly attending hackathons around the country beside finals. ",
+        "gpa": 3.9
+    }, {
+        "degree": " Associate of Electrical Engineering",
+        "time": "2013 to 2015",
+        "school": "Green River College",
+        "location": "Auburn WA",
+        "summary": "Dual degree. ",
+        "gpa": 3.9
+    }],
+    "contact": {
+        "email": "louis@jabsquared.ninja",
+        "website": "https://louisgv.github.io"
+    },
+    "location": {
+        "city": "",
+        "state": ""
+    }
+}, {
+    "name": "Mogul",
+    "title": "Cake Walker",
+    "summary": "Math head, forward thinking entrepreneur with four failed startups.",
+    "skills": {
+        "syntax": [
+            "html",
+            "java",
+            "python"
+        ],
+        "framework": [
+            "angular",
+            "babel",
+            "meteor"
+        ],
+        "domains": [
+            "productivity",
+            "real-time",
+            "visualization"
+        ]
+    },
+    "experiences": [{
+        "role": "Tech Leader",
+        "time": "2015 to Current",
+        "company": "jabSquared",
+        "location": "Auburn WA",
+        "summary": "Consulting firm focused on creating customized mobile application for small businesses. Guided the tech team to release three mobile apps and three websites. Collaborated with the sale team to come up with business strategy. "
+    }],
+    "education": [{
+        "degree": "Associate of Computer Science",
+        "time": "2013 to 2015",
+        "school": "Green River College",
+        "location": "Auburn WA",
+        "summary": "International study. Mostly attending hackathons around the country beside finals. ",
+        "gpa": 3.9
+    }],
+    "contact": {
+        "email": "louis@jabsquared.ninja",
+        "website": "https://louisgv.github.io"
+    },
+    "location": {
+        "city": "",
+        "state": ""
+    }
+}, {
+    "name": "Tobi",
+    "title": "Dish Washer",
+    "summary": "FDA-approved dish washer",
+    "skills": {
+        "tools": [
+            "soap",
+            "brush"
+        ]
+    },
+    "experiences": [{
+        "role": "Tech Leader",
+        "time": "2015 to Current",
+        "company": "jabSquared",
+        "location": "Auburn WA",
+        "summary": "Consulting firm focused on creating customized mobile application for small businesses. Guided the tech team to release three mobile apps and three websites. Collaborated with the sale team to come up with business strategy. "
+    }],
+    "education": [{
+        "degree": "Associate of Computer Science",
+        "time": "2013 to 2015",
+        "school": "Green River College",
+        "location": "Auburn WA",
+        "summary": "International study. Mostly attending hackathons around the country beside finals. ",
+        "gpa": 3.9
+    }],
+    "contact": {
+        "email": "louis@jabsquared.ninja",
+        "website": "https://louisgv.github.io"
+    },
+    "location": {
+        "city": "",
+        "state": ""
+    }
+}]

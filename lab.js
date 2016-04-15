@@ -20,17 +20,19 @@ const JobSeeker = require('./convos/seeker');
 
 const JobPoster = require('./convos/poster');
 
-controller.hears("^search profile$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^sp$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
+
 		bot.startPrivateConversation({
 			user: message.user
 		}, function (response, convo) {
 
 			Profile.list(response, convo);
 		})
+
 	});
 
-controller.hears("^post job$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^pj$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 
 		bot.reply(message, Utils.randomKnP());
@@ -38,14 +40,14 @@ controller.hears("^post job$", ["ambient", "direct_mention", "direct_message"],
 	});
 
 
-controller.hears("^search job$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^sj$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 
 		bot.reply(message, Utils.randomKnP());
 
 	});
 
-controller.hears("^post profile$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^pp$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 
 		bot.reply(message, Utils.randomKnP());
@@ -132,12 +134,6 @@ controller.on(["ambient", "mention", "direct_mention"],
 						break;
 					}
 				})
-
-				// bot.startPrivateConversation({
-				// 	user: message.user
-				// }, function (response, convo) {
-				// 	convo.say(JSON.stringify(classData, null, 2));
-				// })
 			})
 		});
 	});

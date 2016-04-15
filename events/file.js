@@ -14,23 +14,24 @@ module.exports = FileEvent;
 
 let dp = require('../data/fullCV.json');
 
-dp.education = [];
-
 FileEvent.show = function (bot, message) {
 
 	// bot.reply(message, JSON.stringify(dp, null, 2));
+	let newDP = Object.assign({}, dp);
+
+	newDP.skills = {};
 
 	bot.startPrivateConversation({
 		user: message.user
 	}, function (response, convo) {
 
-		FileConvos.constructProfile(dp, (profileResponse, missingFields) => {
+		FileConvos.constructProfile(newDP, (profileResponse, missingFields) => {
 			// convo.say(profileResponse);
 
 			if(Object.keys(missingFields)
 				.length > 0) {
 				console.log(missingFields);
-				JobSeeker.start(response, convo, missingFields, dp, bot);
+				JobSeeker.start(response, convo, missingFields, newDP, bot);
 			}
 		})
 	})

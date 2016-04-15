@@ -4,8 +4,6 @@ let Skills = {};
 
 module.exports = Skills;
 
-const Next = require('./experiences');
-
 const Utils = require('../utils');
 
 const Consent = require('../consent');
@@ -13,7 +11,7 @@ const Consent = require('../consent');
 function askSkillItem(r, c, m, d, b) {
 	for(let s in d.skills) {
 		if(d.skills.hasOwnProperty(s)) {
-			c.ask(Utils.response(`What do you know about \`${s}\`?`, 'skills'),
+			c.ask(Utils.response(`What do you know about ${s}?`, 'skills'),
 				function (r, c) {
 
 					d.skills[s] = r.text.split(/\s*\,\s*/);
@@ -23,7 +21,7 @@ function askSkillItem(r, c, m, d, b) {
 		}
 	}
 	c.say(Utils.response('Very interesting :blush:!'), 'skills');
-	Next.ask(r, c, m, d, b);
+	// Next.ask(r, c, m, d, b);
 	c.next();
 }
 
@@ -43,21 +41,9 @@ function askSkillCategory(r, c, m, d, b) {
 }
 
 Skills.ask = function (r, c, m, d, b) {
-	if(m.skills) {
-		c.say(Utils.response('I think you forgot to list your skill set. :thinking_face:', 'skill'));
-		Consent.ask(r, c, b, function (allowed) {
-			if(allowed) {
+	c.say(Utils.response('What skill are you looking for? :thinking_face:', 'skill'));
 
-				askSkillCategory(r, c, m, d, b);
+	askSkillItem(r, c, m, d, b);
 
-			} else {
-				Next.ask(r, c, m, d, b);
-
-				c.next();
-			}
-		})
-	} else {
-		Next.ask(r, c, m, d, b);
-		c.next();
-	}
+	c.next()
 }
