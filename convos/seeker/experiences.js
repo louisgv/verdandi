@@ -9,7 +9,7 @@ const Next = require('./education');
 const Utils = require('../utils');
 
 Experiences.ask = function (r, c, m, d, b) {
-  if(m.experience) {
+  if(m.experiences) {
     c.ask(Utils.response('Would you mind sharing your experience with me?', 'exp'),
       function (r, c) {
         c.say(Utils.response('You said : ' + r.text));

@@ -22,9 +22,12 @@ const JobPoster = require('./convos/poster');
 
 controller.hears("^search profile$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
+		bot.startPrivateConversation({
+			user: message.user
+		}, function (response, convo) {
 
-		bot.reply(message, Utils.randomKnP());
-
+			Profile.list(response, convo);
+		})
 	});
 
 controller.hears("^post job$", ["ambient", "direct_mention", "direct_message"],
@@ -52,7 +55,7 @@ controller.hears("^post profile$", ["ambient", "direct_mention", "direct_message
 controller.hears("^yogadoro$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 
-		bot.reply(message, Utils.randomKnP());
+		bot.reply(message, Utils.randomYoga());
 
 	});
 
@@ -85,7 +88,7 @@ const NLC = require('./modules/ibm/nlc');
 
 const nlcID = "f15e67x54-nlc-4251";
 
-controller.on(["ambient", "mention", "direct_mention", "direct_message"],
+controller.on(["ambient", "mention", "direct_mention"],
 	function (bot, message) {
 		bot.api.reactions.add({
 			timestamp: message.ts,
@@ -114,13 +117,13 @@ controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 						Profile.list(response, convo);
 						break;
 					case 'yogadoro':
-        		convo.say(Utils.randomYoga());
+						convo.say(Utils.randomYoga());
 						break;
 					case 'what':
 						What.answer(message.text, convo);
 						break;
 					case 'knp':
-            convo.say(Utils.randomKnP());
+						convo.say(Utils.randomKnP());
 						break;
 					case 'help':
 					default:
