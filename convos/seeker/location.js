@@ -32,7 +32,7 @@ function askCity(r, c, m, d, b) {
 
 Location.ask = function (r, c, m, d, b) {
 	if(m.location) {
-		c.say(Utils.response('I could not find any information regarding your location... :thinking_face:'));
+		c.say(Utils.response('I could not find any information regarding your location... :thinking_face:', 'location'));
 		Consent.ask(r, c, b, function (allowed) {
 			if(allowed) {
 				askCity(r, c, m, d, b);
