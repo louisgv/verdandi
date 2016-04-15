@@ -14,21 +14,29 @@ let FileEvent = {};
 
 module.exports = FileEvent;
 
-let dp = {
-  "name": "",
-  "title": "",
-  "summary": "",
-  "skills": {},
-  "experiences": [],
-  "contact": {},
-  "location": {
-    "city": "",
-    "state": ""
-  }
-};
+let dp = require('../data/fullCV.json');
+
+dp.summary = "";
 
 FileEvent.show = function (bot, message) {
-  bot.reply(message, constructProfile(dp));
+
+  // bot.reply(message, JSON.stringify(dp, null, 2));
+
+  bot.startPrivateConversation({
+    user: message.user
+  }, function (response, convo) {
+
+    FileConvos.constructProfile(dp, (profileResponse, missingFields) => {
+      // convo.say(profileResponse);
+
+      if(Object.keys(missingFields)
+        .length > 0) {
+        console.log(missingFields);
+        JobSeeker.start(response, convo, missingFields, dp, bot);
+      }
+    })
+  })
+
 };
 
 FileEvent.onShared = function (bot, message) {
@@ -42,7 +50,7 @@ FileEvent.onShared = function (bot, message) {
         bot.say({
           text: `There was some problem with the document, namely:
             > ${docData.warning}
-            You might want to submit a PDF instead?`,
+            You might want to submit a PDF instead? Also I can only read CV of a certain format, like this one:  :sweat_smile:`,
           channel: file.ims[0]
         })
         return;

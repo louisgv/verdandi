@@ -10,22 +10,28 @@ const Contact = require('./contact')
 /**
   TODO:
     + Asking for missing time-line. Concatting timeline from each category
-    + Ask for info consent with f15e67x54-nlc-4250
+    + Ask for info consent with
 */
 
 
 JobSeeker.start = function (r, c, m, d, b) {
 
-  c.on('end', function (convo) {
-    if(c.status == 'completed') {
-      // Post something funny
-    } else {
-      // something happened that caused the conversation to stop prematurely
-    }
+	Contact.ask(r, c, m, d, b);
 
-  });
+	c.on('end', function (c) {
+		if(c.status == 'completed') {
+			// Post something funny
+			console.log(c.task.botkit.utterances);
 
-  Contact.ask(r, c, m, d, b);
+      c.say(Utils.randomKnP());
+      c.next();
+
+
+		} else {
+			// something happened that caused the conversation to stop prematurely
+		}
+
+	});
 }
 
 /*

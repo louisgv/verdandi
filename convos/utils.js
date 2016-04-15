@@ -47,7 +47,7 @@ exports.apologies = function (lv, convo, solution) {
 
 exports.response = function (text, nameAddOn) {
   return {
-    'username': 'Verdandi ' + nameAddOn || '',
+    'username': 'Verdandi ' + (nameAddOn || ''),
     'text': text,
     'icon_emoji': ':innocent:'
   }

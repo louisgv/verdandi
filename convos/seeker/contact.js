@@ -12,7 +12,7 @@ let emailRegex = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))
 
 Contact.ask = function (r, c, m, d, b) {
   if(m.email) {
-    c.ask(Utils.response('Would you mind sharing your email with me? (If yes say `My email is ...` :wink: )', 'contact'), [
+    c.ask(Utils.response('Would you mind sharing your email with me? (If yes say `My email is ...` :wink: )', 'consent'), [
       {
         pattern: b.utterances.no,
         callback: (r, c) => {

@@ -11,7 +11,9 @@ function capitalizeFirstLetter(string) {
 
 FileController.constructProfile = function (data, callback) {
 
-    let missingFields = {};
+    let missingFields = {
+      location: true
+    };
 
     let f = [];
 
