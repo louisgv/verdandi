@@ -18,7 +18,7 @@ controller.hears("^fun$", ["ambient", "direct_mention", "direct_message"],
 
 const JobSeeker = require('./convos/seeker');
 
-const JobPoster = require('./convos/jposter');
+const JobPoster = require('./convos/poster');
 
 controller.hears("^search profile$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
@@ -77,7 +77,11 @@ controller.on('file_shared', FileEvent.onShared);
 
 const What = require('./convos/what');
 
+const Profile = require('./convos/profile');
+
 const NLC = require('./modules/ibm/nlc');
+
+// f15e67x54-nlc-4662
 
 const nlcID = "f15e67x54-nlc-4251";
 
@@ -107,7 +111,7 @@ controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 
 						break;
 					case 'search_profile':
-
+						Profile.list(response, convo);
 						break;
 					case 'yogadoro':
         		convo.say(Utils.randomYoga());

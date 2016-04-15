@@ -1,3 +1,51 @@
+I have a job for someone,post_job
+I want to post a job,post_job
+I have an idea of an app,post_job
+I want to post a job,post_job
+I would like to list a job,post_job
+Can you refer this job to someone,post_job
+I have an empty position needed to fill out,post_job
+I want to post a position,post_job
+I'm looking for a job,search_job
+I need a gig,search_job
+I need a job,search_job
+Looking for a php position,search_job
+Any Unity3D position?,search_job
+Any nodejs position?,search_job
+I need a Unreal job,search_job
+I want a job with huge salary,search_job
+Need to work,search_job
+I need an employer,search_job
+Looking for a programming role,search_job
+Looking for a sale role,search_job
+Looking for a management role,search_job
+I want an engineer role,search_job
+I am looking for a design role,search_job
+Any graphic design job?,search_job
+I would like to submit my profile,post_profile
+Can you list me,post_profile
+I want to register for the talent pool,post_profile
+Can you link me to potential employee?,post_profile
+I want to publish my profile,post_profile
+Please refer my profile to other,post_profile
+I want my profile published,post_profile
+Can you post my profile for other to see?,post_profile
+I'm looking for a nodejs developer,search_profile
+I am looking for a php developer,search_profile
+I need a programmer,search_profile
+I need someone to work on my project,search_profile
+I need to hire someone,search_profile
+Looking for someone available,search_profile
+Looking for talent,search_profile
+I'm seeking some talent,search_profile
+I need some people,search_profile
+Need to hire someone,search_profile
+I want to employ someone,search_profile
+I need a good sale person,search_profile
+I need a laser cutter engineer,search_profile
+Looking for an engineer,search_profile
+Anyone looking for a graphic design job?,search_profile
+I'm looking to hire,search_profile
 Start the timer please,yogadoro
 Can you start the timer,yogadoro
 Time to work,yogadoro

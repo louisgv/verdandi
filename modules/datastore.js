@@ -12,8 +12,16 @@ DataStore.searchProfile = function (requirement) {
 
 }
 
+DataStore.listProfiles = function () {
+	return storage.profiles;
+}
+
 DataStore.storeProfile = function (profile) {
 	storage.profiles.push(profile);
+}
+
+DataStore.listJobs = function () {
+	return storage.jobs;
 }
 
 DataStore.storeJob = function (job) {
