@@ -7,6 +7,8 @@ const Utils = require('../utils');
 
 const Contact = require('./contact')
 
+const DataStore = require('../../modules/datastore');
+
 /**
   TODO:
     + Asking for missing time-line. Concatting timeline from each category
@@ -16,17 +18,27 @@ const Contact = require('./contact')
 
 JobSeeker.start = function (r, c, m, d, b) {
 
-	Contact.ask(r, c, m, d, b);
+	if(Object.keys(m)
+		.length > 0) {
+		Contact.ask(r, c, m, d, b);
+	}
 
 	c.on('end', function (c) {
 		if(c.status == 'completed') {
 			// Post something funny
 			// console.log(c.source_message);
 
+
+
 			b.startPrivateConversation({
 				user: c.source_message.user
 			}, function (response, convo) {
-				convo.say(Utils.response("I will be spreading the world about you :blush:"));
+				// convo.say(JSON.stringify(d, null, 2));
+
+				DataStore.storeProfile(d);
+
+				convo.say(Utils.response("Awesome! :laughing: I will be spreading the world about you :blush:"));
+
 				convo.say(Utils.randomKnP());
 			})
 
