@@ -68,6 +68,16 @@ let quotes = [
 	}
 ]
 
+exports.meme = {
+  anotherOne : function () {
+    return {
+      'username': 'Verdandi - Anotha1',
+  		'text': `Come back for more :peace_symbol:
+      https://www.youtube.com/watch?v=Jo-0ytcEXKg`,
+  		'icon_emoji': ':laughing:',
+    }
+  }
+}
 
 exports.randomQuote = function () {
 	let quote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -96,7 +106,7 @@ exports.randomYoga = function () {
 		'username': 'Verdandi - Yoga',
 		'text': `Let's do some yoga shall we? :peace_symbol:
     https://www.youtube.com/watch?v=${v}`,
-		'icon_emoji': ':blush:',
+		'icon_emoji': ':blush:'
 	}
 }
 
