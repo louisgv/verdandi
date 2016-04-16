@@ -21,6 +21,67 @@ let yoga = [
   "Onr5x8hjVFE"
 ]
 
+let quotes = [
+	{
+		q: "Imagination is more important than knowledge.",
+		a: "Albert Einstein"
+	},
+	{
+		q: "If music be the food of love, play on.",
+		a: "Shakespeare"
+	},
+	{
+		q: "The way to get started is to quit talking and begin doing.",
+		a: "Walt Disney"
+	},
+	{
+		q: "Obstacles are those frightful things you see when you take your eyes off the goal.",
+		a: "Henry Ford"
+	},
+	{
+		q: "I skate where the puck is going to be, not where it has been.",
+		a: "Wayne Gretzky"
+	},
+	{
+		q: "When you come to a fork in the road, take it.",
+		a: "Yogi Berra"
+	},
+	{
+		q: "We may affirm absolutely that nothing great in the world has been accomplished without passion.",
+		a: "Hegel"
+	},
+	{
+		q: "The life which is unexamined is not worth living.",
+		a: "Socrates"
+	},
+	{
+		q: "We may affirm absolutely that nothing great in the world has been accomplished without passion.",
+		a: "Hegel"
+	},
+	{
+		q: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+		a: "M.K.Gandhi"
+	},
+	{
+		q: "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+		a: "Zig Ziglar"
+	}
+]
+
+
+exports.randomQuote = function () {
+	let quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+	return {
+		'username': 'Verdandi - Quote',
+		'text': `>>>*${quote.q}*
+      _${quote.a}_`,
+		'icon_emoji': ':blush:',
+    "mrkdwn": true
+	}
+}
+
+
 // bot.api.channels.list({}, (err, response) => {
 //   response.channels.filter((chan) => {return chan.is_member}).map((c) => {
 //     console.log(c);

@@ -17,17 +17,16 @@ const JobSeeker = require('./convos/seeker');
 
 const JobPoster = require('./convos/poster');
 
-
 controller.hears("^fun$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 		bot.reply(message, Utils.randomKnP());
 	});
 
-controller.hears("^fp$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^test$", ["ambient", "direct_mention", "direct_message"],
 	Profile.testFilter
 );
 
-controller.hears("^sp$", ["ambient", "direct_mention", "direct_message"],
+controller.hears("^list$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 
 		bot.startPrivateConversation({
@@ -37,28 +36,6 @@ controller.hears("^sp$", ["ambient", "direct_mention", "direct_message"],
 			Profile.list(response, convo);
 
 		})
-
-	});
-
-controller.hears("^pj$", ["ambient", "direct_mention", "direct_message"],
-	function (bot, message) {
-
-		bot.reply(message, Utils.randomKnP());
-
-	});
-
-
-controller.hears("^sj$", ["ambient", "direct_mention", "direct_message"],
-	function (bot, message) {
-
-		bot.reply(message, Utils.randomKnP());
-
-	});
-
-controller.hears("^pp$", ["ambient", "direct_mention", "direct_message"],
-	function (bot, message) {
-
-		bot.reply(message, Utils.randomKnP());
 
 	});
 
@@ -117,13 +94,13 @@ controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 				}, function (response, convo) {
 					switch(classData.top_class) {
 					case 'post_job':
-
+						convo.say(Utils.randomQuote());
 						break;
 					case 'search_job':
-
+						convo.say(Utils.randomQuote());
 						break;
 					case 'post_profile':
-
+						convo.say(Utils.randomQuote());
 						break;
 					case 'search_profile':
 						JobPoster.start(response, convo, bot);
