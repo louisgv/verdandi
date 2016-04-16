@@ -11,14 +11,21 @@ const Utils = require('./convos/utils');
 
 const DataStore = require('./modules/datastore');
 
+const Profile = require('./convos/profile');
+
+const JobSeeker = require('./convos/seeker');
+
+const JobPoster = require('./convos/poster');
+
+
 controller.hears("^fun$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 		bot.reply(message, Utils.randomKnP());
 	});
 
-const JobSeeker = require('./convos/seeker');
-
-const JobPoster = require('./convos/poster');
+controller.hears("^fp$", ["ambient", "direct_mention", "direct_message"],
+	Profile.testFilter
+);
 
 controller.hears("^sp$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
@@ -28,6 +35,7 @@ controller.hears("^sp$", ["ambient", "direct_mention", "direct_message"],
 		}, function (response, convo) {
 
 			Profile.list(response, convo);
+
 		})
 
 	});
@@ -66,7 +74,9 @@ controller.hears("^yogadoro$", ["ambient", "direct_mention", "direct_message"],
 
 const Help = require('./convos/help');
 
-controller.hears("^help$", ["ambient", "direct_mention", "direct_message"], Help.show);
+controller.hears("^help$", ["ambient", "direct_mention", "direct_message"],
+	Help.show
+);
 
 // Receiving CV
 
@@ -81,8 +91,6 @@ controller.on('file_shared', FileEvent.onShared);
 // EVAS
 
 const What = require('./convos/what');
-
-const Profile = require('./convos/profile');
 
 const NLC = require('./modules/ibm/nlc');
 

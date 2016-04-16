@@ -12,8 +12,8 @@ const File = require('./file')
 let dp = require('../db/tmp/requirement.json');
 
 function capitalizeFirstLetter(string) {
-  return string.charAt(0)
-    .toUpperCase() + string.slice(1);
+	return string.charAt(0)
+		.toUpperCase() + string.slice(1);
 }
 
 function constructProfileCard(data, requirement, callback) {
@@ -122,15 +122,20 @@ Profile.testFilter = function (bot, message) {
 		user: message.user
 	}, function (response, convo) {
 
-    let profile = DataStore.searchProfile(dp);
-    constructProfileCard(profile, dp, (p)=>{
-      convo.say(p);
+    DataStore.searchProfile(dp).forEach((profile)=>{
 
-      convo.next();
-    })
+      constructProfileCard(profile, dp, (p)=>{
+        convo.say(p);
+
+        convo.next();
+      })
+    });
   })
-
 };
+
+Profile.newProfile = function (bot, message) {
+
+}
 
 Profile.list = function (response, convo) {
   DataStore.listProfiles().forEach((profile)=>{

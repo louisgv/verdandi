@@ -13,17 +13,14 @@ storage.profiles = require('../data/sampleCVs.json');
 DataStore.searchProfile = function (requirement) {
 	return storage.profiles.filter(function (profile) {
 		let skillArray = []
-		for (let skill in profile.skills) {
-			if (profile.skills.hasOwnProperty(skill)) {
-				skillArray = skillArray.concat(skill)
+		for(let skill in profile.skills) {
+			if(profile.skills.hasOwnProperty(skill)) {
+				skillArray = skillArray.concat(profile.skills[skill])
 			}
 		}
-		requirement.skills.forEach((reqSkill)=>{
-			if( skillArray.indexOf(reqSkill)>=0){
-				return true;
-			}
+		return requirement.skills.some((reqSkill) => {
+			return (skillArray.indexOf(reqSkill) >= 0);
 		})
-		return false;
 	})
 }
 

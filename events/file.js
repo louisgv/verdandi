@@ -35,7 +35,6 @@ FileEvent.show = function (bot, message) {
 			}
 		})
 	})
-
 };
 
 FileEvent.onShared = function (bot, message) {
