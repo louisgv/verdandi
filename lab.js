@@ -94,11 +94,13 @@ const What = require('./convos/what');
 
 const NLC = require('./modules/ibm/nlc');
 
+// f15e67x54-nlc-4251
+
 // f15e67x54-nlc-4662
 
-const nlcID = "f15e67x54-nlc-4251";
+const nlcID = "f15e67x54-nlc-4662";
 
-controller.on(["ambient", "mention", "direct_mention"],
+controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 	function (bot, message) {
 		bot.api.reactions.add({
 			timestamp: message.ts,
@@ -124,7 +126,8 @@ controller.on(["ambient", "mention", "direct_mention"],
 
 						break;
 					case 'search_profile':
-						Profile.list(response, convo);
+						JobPoster.start(response, convo, bot);
+						// Profile.list(response, convo);
 						break;
 					case 'yogadoro':
 						convo.say(Utils.randomYoga());

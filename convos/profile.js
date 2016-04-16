@@ -7,8 +7,6 @@ const Utils = require('./utils');
 
 const DataStore = require('../modules/datastore');
 
-const File = require('./file')
-
 let dp = require('../db/tmp/requirement.json');
 
 function capitalizeFirstLetter(string) {
@@ -113,6 +111,8 @@ function constructProfileCard(data, requirement, callback) {
 
   callback (profileResponse);
 }
+
+Profile.constructProfileCard = constructProfileCard;
 
 Profile.testFilter = function (bot, message) {
 
