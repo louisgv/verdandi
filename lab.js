@@ -17,6 +17,8 @@ const JobSeeker = require('./convos/seeker');
 
 const JobPoster = require('./convos/poster');
 
+const Yoga = require('./convos/yogadoro')
+
 controller.hears("^fun$", ["ambient", "direct_mention", "direct_message"],
 	function (bot, message) {
 		bot.reply(message, Utils.randomKnP());
@@ -107,7 +109,12 @@ controller.on(["ambient", "mention", "direct_mention", "direct_message"],
 						// Profile.list(response, convo);
 						break;
 					case 'yogadoro':
-						convo.say(Utils.randomYoga());
+
+						// SAY something, then update that over an interval of time
+
+						// convo.say(Utils.randomYoga());
+						Yoga.start(response, convo, bot);
+
 						break;
 					case 'what':
 						What.answer(message.text, convo);
