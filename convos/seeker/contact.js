@@ -28,7 +28,7 @@ function askEmail(r, c, m, d, b) {
 				console.log(r.text);
 				let emails = r.text.match(emailRegex);
 
-				if(emails.length > 0) {
+				if(emails && emails.length > 0) {
 					d.contact.email = emails[0];
 
 					Next.ask(r, c, m, d, b);

@@ -22,7 +22,9 @@ JobSeeker.start = function (r, c, m, d, b) {
 
 	if(Object.keys(m)
 		.length > 0) {
+		c.say(Utils.response('Your profile is misisng some needed information :thinking_face:'));
 		Contact.ask(r, c, m, d, b);
+		c.next();
 	}
 
 	c.on('end', function (c) {

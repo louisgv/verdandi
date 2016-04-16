@@ -18,7 +18,7 @@ function askDescription(r, c, m, d, b) {
 				c.repeat();
 				c.next();
 			} else {
-				m.summary = r.text;
+				d.summary = r.text;
 				c.say(Utils.response('Very interesting :blush:'), 'summary')
 				Next.ask(r, c, m, d, b);
 				c.next();

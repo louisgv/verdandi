@@ -19,7 +19,7 @@ DataStore.searchProfile = function (requirement) {
 			}
 		}
 		return requirement.skills.some((reqSkill) => {
-			return (skillArray.indexOf(reqSkill) >= 0);
+			return (skillArray.indexOf(reqSkill.toLocaleLowerCase()) >= 0);
 		})
 	})
 }

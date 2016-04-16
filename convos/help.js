@@ -12,35 +12,40 @@ let commandList = {
 		{
 			'color': '#193bdc',
 			'title': 'Seeking talents?',
-      'mrkdwn_in': ["fields"],
-			"fields": [{
-				"title": ". Job Listing",
-				"value": "`I have a gig`,`I have a job for someone`",
-				"short": true
-                }, {
-				"title": ". Profile Searching",
-				"value": "`I need a programmer`, `Looking for talent`",
-				"short": true
-                }]
+			'mrkdwn_in': ["fields"],
+			"fields": [
+				// {
+				// 	"title": ". Job Listing",
+				// 	"value": "`I have a gig`,`I have a job for someone`",
+				// 	"short": true
+        //         },
+				{
+					"title": ". Profile Searching",
+					"value": "`I need a programmer`, `Looking for talent`",
+					"short": true
+                }
+							]
     },
 		{
 			'color': '#bbc6f4',
 			'title': 'Looking for work?',
-      'mrkdwn_in': ["fields"],
-			"fields": [{
-				"title": ". Job Searching",
-				"value": "`Looking for a programming role`,`I need a job`",
-				"short": true
-                }, {
+			'mrkdwn_in': ["fields"],
+			"fields": [
+				// {
+				// "title": ". Job Searching",
+				// "value": "`Looking for a programming role`,`I need a job`",
+				// "short": true
+        // },
+				{
 				"title": ". Profile Listing",
 				"value": "Just upload your CV file to me! (The `+` button)",
 				"short": true
-                }]
+      	}]
     },
 		{
 			'color': '#193bdc',
 			'title': 'I can also do the following:',
-      'mrkdwn_in': ["fields"],
+			'mrkdwn_in': ["fields"],
 			"fields": [{
 				"title": ". Start a Yogadoro Session!",
 				"value": "`I need to focus`, `Help me concentrate!`",
@@ -48,6 +53,10 @@ let commandList = {
       }, {
 				"title": ". Show something fun!",
 				"value": "`I\'m bored`, `Entertain me!`, `I need a good laugh`",
+				"short": true
+      }, {
+				"title": ". Answer conceptual question!",
+				"value": "`What is a neutrino?`, `Do you know about the neutrino?`",
 				"short": true
       }, {
 				"title": ". Repeat this message",

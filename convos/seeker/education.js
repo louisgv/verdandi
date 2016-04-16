@@ -99,7 +99,7 @@ function askGrade(r, c, m, d, b) {
 }
 
 function askRepeat(r, c, m, d, b) {
-	c.ask(Utils.response('Did you attend anywhere else? :thinking_face:', 'exp'), [
+	c.ask(Utils.response('Did you attend anywhere else? :thinking_face:', 'edu'), [
 		{
 			pattern: b.utterances.no,
 			callback: (r, c) => {
